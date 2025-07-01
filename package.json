@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "prisma": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -49,7 +50,7 @@
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
     "molecules": "latest",
-    "next": "15.2.4",
+    "next": "14.2.4",
     "next-intl": "latest",
     "next-themes": "^0.4.4",
     "organisms": "latest",
@@ -69,6 +70,10 @@
     "styled-components": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "@prisma/client": "^5.12.1",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "swr": "^2.2.3",
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },
@@ -78,6 +83,7 @@
     "@types/react-dom": "^19",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prisma": "^5.12.1"
   }
 }

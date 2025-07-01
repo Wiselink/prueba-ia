@@ -1,0 +1,35 @@
+datasource db {
+  provider = env("DATABASE_PROVIDER")
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Turno {
+  id               String   @id @default(uuid())
+  codigo           String   @unique
+  pacienteNombre   String?
+  estado           Estado   @default(PENDIENTE)
+  orden            Int
+  timestampCreacion DateTime @default(now())
+}
+
+enum Estado {
+  PENDIENTE
+  ATENDIENDO
+  FINALIZADO
+}
+
+model Usuario {
+  id    String @id @default(uuid())
+  email String @unique
+  password String
+  rol   Rol
+}
+
+enum Rol {
+  SECRETARIA
+  DOCTOR
+}
