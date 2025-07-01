@@ -1,7 +1,13 @@
-"use client"
+'use client'
 
-import HomeNavbar from "../home-navbar"
+import AdminDashboard from '@/components/AdminDashboard'
 
-export default function SyntheticV0PageForDeployment() {
-  return <HomeNavbar />
+export default function SyntheticV0PageForDeployment(
+  props: Record<string, any>
+) {
+  return (
+    <div>
+      <AdminDashboard />
+    </div>
+  )
 }
