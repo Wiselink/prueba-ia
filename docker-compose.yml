@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: sqlite:./dev.db
+      DATABASE_PROVIDER: sqlite
+      JWT_SECRET: supersecret
+    volumes:
+      - .:/app
+    command: npm run dev
