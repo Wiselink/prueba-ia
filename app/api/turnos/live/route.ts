@@ -10,21 +10,23 @@ export async function GET(req: Request) {
     Connection: 'keep-alive',
   })
 
+  let interval: NodeJS.Timeout
+  let onUpdate: (data: any) => void
   const stream = new ReadableStream({
     start(controller) {
-      const onUpdate = (data: any) => {
+      onUpdate = (data: any) => {
         if (codigo && data.codigo !== codigo) return
         controller.enqueue(`data: ${JSON.stringify(data)}\n\n`)
       }
       sseEmitter.on('update', onUpdate)
       controller.enqueue('event: ping\ndata: connected\n\n')
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         controller.enqueue('event: ping\ndata: keepalive\n\n')
       }, 15000)
-      return () => {
-        clearInterval(interval)
-        sseEmitter.off('update', onUpdate)
-      }
+    },
+    cancel() {
+      clearInterval(interval)
+      if (onUpdate) sseEmitter.off('update', onUpdate)
     },
   })
 
